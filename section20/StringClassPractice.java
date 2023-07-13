@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package section20;
+import java.util.*;
 
 /**
  *
@@ -15,20 +16,21 @@ public class StringClassPractice {
 
         StringBuffer s2 = new StringBuffer("Hello");
 
-        StringBuilder s3 = new StringBuilder("Hello");
-        StringBuilder s5 = s3;
+       StringBuilder s6;
+        s6 = new StringBuilder("Hello");
+        StringBuilder s5 = s6;
         String s4 = s1.concat(" World");
         s2.append(" World");
-        s3.append(" World");
+       s6.append(" World");
 
         System.out.println(s1);
         System.out.println(s2);
-        System.out.println(s3);
+        System.out.println(s6);
         System.out.println(s4);
         System.out.println(s1.charAt(3));
-        System.out.println(s3.equals(s2));
-        System.out.println(s3.equals("Hello World"));
-        System.out.println(s3.equals(s5));
+        System.out.println(s6.equals(s2));
+        System.out.println(s6.equals("Hello World"));
+        System.out.println(s6.equals(s5));
        // System.out.println(s1.isEmpty());
 //  System.out.println(s3.(s2));
     }
