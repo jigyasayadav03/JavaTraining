@@ -21,13 +21,14 @@ public class LinkedListBasics {
         System.out.println("contains 79 :" + l1.contains(79));
         System.out.println("set a element  " + l1.set(3, 45));
         System.out.println("linked list " + l1);
-        System.out.println("first elemt"+l1.peek());
-         System.out.println("last elemt"+l1.peekLast());
+        System.out.println("first elemt" + l1.peek());
+        System.out.println("last elemt" + l1.peekLast());
         System.out.println("For loop iteration ");
         for (int i = 0; i < l1.size(); i++) {
             System.out.print(l1.get(i) + " ,");
         }
-         System.out.println("remove last elemt"+l1.pollLast());
+        System.out.println(" ");
+        System.out.println("remove last elemt" + l1.pollLast());
         System.out.println(" ");
         System.out.println("For iterator ");
         for (Iterator<Integer> it = l1.iterator(); it.hasNext();) {
