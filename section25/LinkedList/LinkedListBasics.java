@@ -13,7 +13,7 @@ import java.util.*;
 public class LinkedListBasics {
 
     public static void main(String[] args) {
-        LinkedList<Integer> l1 = new LinkedList<>(List.of(19, 29, 39, 49, 59));
+        LinkedList<Integer> l1 = new LinkedList<>(List.of(19, 29,/*null,*/ 39, 49, 59));
         System.out.println("size is :" + l1.size());
         System.out.println("contains 39 :" + l1.contains(39));
         System.out.println("contains 79 :" + l1.contains(79));
@@ -23,6 +23,7 @@ public class LinkedListBasics {
         System.out.println("linked list " + l1);
         System.out.println("first elemt" + l1.peek());
         System.out.println("last elemt" + l1.peekLast());
+        
         System.out.println("For loop iteration ");
         for (int i = 0; i < l1.size(); i++) {
             System.out.print(l1.get(i) + " ,");
