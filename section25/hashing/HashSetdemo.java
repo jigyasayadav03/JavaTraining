@@ -10,11 +10,10 @@ import java.util.*;
  *
  * @author jigyasa_yadav
  */
-
 public class HashSetdemo {
 
     public static void main(String[] args) {
-       Set<Integer> s = new HashSet<>();
+        Set<Integer> s = new HashSet<>();
         s.add(10);
         s.add(20);
         s.add(null);
