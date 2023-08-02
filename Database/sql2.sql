@@ -29,5 +29,18 @@ Students_marks.english,Students_marks.hindi,
 Students_marks.maths, Students_marks.social, Students_marks.science
 FROM Students
 INNER JOIN Students_marks ON Students.Roll_number=Students_marks.roll_number
- where hindi >6;
+where hindi >6;
 
+select avg(maths) from Students_marks;
+SELECT AVG(`maths`) AS AVG_maths, AVG(`english`) AS AVG_english FROM Students_marks;
+SELECT MID("JIGYASA ", 5, 1) AS ExtractString;
+SELECT lcase("JIGYASA");
+select ucase("jigyasa");
+select current_date();
+select current_timestamp();
+
+SELECT Students.Roll_number, Students.Name, Students.Father_name, Students.Contact, Students.Address,
+       Students_marks.english, Students_marks.hindi, Students_marks.maths, Students_marks.social, Students_marks.science
+FROM Students
+left JOIN Students_marks ON Students.Roll_number = Students_marks.roll_number
+WHERE Students_marks.hindi > 6;
