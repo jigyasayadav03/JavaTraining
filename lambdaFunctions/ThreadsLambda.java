@@ -3,20 +3,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package lambdaFunctions;
+
 /**
  *
  * @author jigyasa_yadav
  */
-interface Sum{
-   public void sumofTwo(int a, int b);
-}
-
-public class SumUSingLE {
+public class ThreadsLambda {
     public static void main(String[] args) {
-        //type inference
-        Sum s = (a , b )-> {  
-            System.out.println(a+b);
+        Runnable r= ()->{ for(int i =0;i <10;i++){
+            System.out.println("Hello Childd");
+        }
+            
         };
-        s.sumofTwo(2,5);
+        Thread t=new Thread(r);
+       t.start();
+       for(int i=0;i<10;i++){
+                System.out.println("hello main");
+        }
+        
+
+    r.run();
     }
-}
+    }
+
+
