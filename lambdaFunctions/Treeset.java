@@ -6,8 +6,12 @@ package lambdaFunctions;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.TreeSet;
 
+/**
+ *
+ * @author jigyasa_yadav
+ */
 /**
  *
  * @author jigyasa_yadav
@@ -29,21 +33,21 @@ import java.util.Comparator;
       return (t>t1)?-1:(t<t1)?1:0;
     }
 }*/
-public class SortingUsingLambdaArrrayList {
+public class Treeset {
+
     public static void main(String[] args) {
-        ArrayList <Integer> l=new ArrayList<>();
-l.add(10);
-l.add(8);
-l.add(20);
-l.add(2);
-l.add(5);
-l.add(7);
+        TreeSet<Integer> l = new TreeSet<>((t, t1) -> (t > t1) ? -1 : (t < t1) ? 1 : 0);
+        l.add(10);
+        l.add(8);
+        l.add(20);
+        l.add(2);
+        l.add(20);
+        l.add(5);
+        l.add(7);
         System.out.println("before soring");
         System.out.println(l);
         System.out.println("AFTER SORTING");
-       //Collections.sort(l,new myComparator());
-       Collections.sort(l,(t,t1)->(t>t1)?-1:(t<t1)?1:0);
-         
-       System.out.println(l);
-               }
+
+        System.out.println(l);
+    }
 }
