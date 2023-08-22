@@ -15,7 +15,7 @@ interface Interff{
 }
 public class StaticMethodRefernce {
     public static void add(){
-        System.out.println("the sum is givemn by adding two number");
+        System.out.println("the sum is given by adding two number");
     }
     public static void main(String[] args) {
        Interff i=StaticMethodRefernce::add;
