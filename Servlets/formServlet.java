@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 /**
  * Servlet implementation class formServlet
  */
-@WebServlet("/formServlet")
 public class formServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
