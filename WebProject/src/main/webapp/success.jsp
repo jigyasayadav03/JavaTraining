@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Insert title here</title>
 </head>
 <body>
 
+<h6> hello</h6>
+         Welcome! <%= request.getAttribute("name") %>
+	
 </body>
 </html>
