@@ -22,7 +22,11 @@
             </tr>
             <tr>
                 <td>Want to Register</td>
-                <td><input type="submit" value="Register" ></td>
+                
+                <td>
+                <input type="submit" value="Register" >
+                </a>
+                </td>
             </tr>
         </table>
     </form>

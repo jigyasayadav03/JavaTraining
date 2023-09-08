@@ -1,8 +1,5 @@
 package com.classss.pack;
 
-import com.classss.pack.Registration;
-import com.classss.pack.RegisterDao;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,7 +34,6 @@ public class RegistrationServlet extends HttpServlet {
         try {
             int result = RegisterDao.registerStudent(registration);
             if (result > 0) {
-                String names = request.getParameter("name");
                 request.setAttribute("name", name);
 
                 // Forward the request to the greeting page JSP
