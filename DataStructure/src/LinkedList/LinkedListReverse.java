@@ -30,9 +30,22 @@ public class LinkedListReverse {
 		node = prev;
 		return node;
 	}
+	
+	public void swap() {
+		 Node temp = head;
+		 
+	            while (temp != null && temp.next != null) {
+	            int k = temp.data;
+	            temp.data = temp.next.data;
+	            temp.next.data = k;
+	            temp = temp.next.next;
+	            }
+	            printList(head);
+	        
+	}
 
 	// prints content of double linked list
-	void printList(Node node)
+	public static void printList(Node node)
 	{
 		while (node != null) {
 			System.out.print(node.data + " ");
@@ -54,5 +67,7 @@ public class LinkedListReverse {
 		System.out.println("");
 		System.out.println("Reversed linked list ");
 		list.printList(head);
+		System.out.println();
+		list.swap();
 	}
 }

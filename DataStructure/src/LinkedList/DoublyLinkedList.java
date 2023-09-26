@@ -1,7 +1,5 @@
 package LinkedList;
 
-import LinkedList.SinglyLinkedList.Node;
-
 public class DoublyLinkedList {
 	Node head = null;
 

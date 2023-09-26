@@ -38,11 +38,13 @@ public class NthNodeFromENd {
                 return;
             }
             tempPtr = tempPtr.next;
+           
         }
 
         while (tempPtr != null) {
             mainPtr = mainPtr.next;
             tempPtr = tempPtr.next;
+            
         }
 
         System.out.println("The " + n + "th node from the end is: " + mainPtr.data);
