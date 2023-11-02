@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Book_rest&apos;&#x0A;- Original project: &apos;Book_rest&apos;&#x0A;- Original element: &apos;Book_rest/src/main/java/com.book.mapping.questionanswer&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.book.mapping.questionanswer" element2="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.book.mapping" elements="2" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1698649336737" subPackages="false" version="1.0"/>
+</session>

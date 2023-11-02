@@ -1,0 +1,7 @@
+package com.book.dao;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface BookRepository extends CrudRepository {
+public Book findBookByID(int id);
+}

@@ -1,0 +1,60 @@
+package com.example.demo;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.example.demo.model.User;
+import com.example.demo.model.UserRepository;
+
+@SpringBootApplication
+public class JpaDemoApplication {
+
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(JpaDemoApplication.class, args);
+        UserRepository userRepository = context.getBean(UserRepository.class);
+
+//        User user = new User();
+//        user.setAddress("Indore");
+//        user.setName("Jigyasa");
+//        user.setContact("23467");
+//
+//        User user1 = new User();
+//        user1.setAddress("Indore");
+//        user1.setName("Roshan Patidar");
+//        user1.setContact("56789");
+//
+//        // Save users to the database
+////        userRepository.save(user);
+////        userRepository.save(user1);
+//List<User> users= List.of(user,user1);
+//userRepository.saveAll(users); 
+////
+//
+//        // Retrieve all users and print them 
+//        Iterable<User> allUsers = userRepository.findAll();
+//        System.out.println("All Users:");
+//        allUsers.forEach(u -> System.out.println(u));
+////
+//        // Retrieve a user by name and print them
+//        System.out.println("User by Name (Roshan Patidar):");
+//        userRepository.getUserByName("Roshan Patidar").forEach(u -> System.out.println(u));
+//      
+        Optional<User> optional=userRepository.findById(303);
+        User user =optional.get();
+        user.setAddress("maheshwar");
+        userRepository.save(user);
+        // Retrieve and print the updated user
+//        User updatedUser = userRepository.findById(user.getId()).orElse(null);
+//        if (updatedUser != null) {
+//            System.out.println("Updated User:");
+//            System.out.println(updatedUser);
+//        } else {
+//            System.out.println("User not found.");
+//       
+
+    }
+}

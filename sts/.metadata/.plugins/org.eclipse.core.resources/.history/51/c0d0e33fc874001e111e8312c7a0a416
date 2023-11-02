@@ -1,0 +1,4 @@
+spring.datasource.name=SprngJDBC
+spring.datasource.url=jdbc:mysql://localhost:3306/SprngJDBC
+spring.datasource.username=root
+spring.datasource.password=root

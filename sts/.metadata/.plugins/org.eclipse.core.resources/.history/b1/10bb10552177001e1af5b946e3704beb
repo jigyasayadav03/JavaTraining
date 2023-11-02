@@ -1,0 +1,30 @@
+package com.book.helper;
+
+import java.io.File;
+import java.nio.file.Files;
+
+import org.springframework.web.multipart.MultipartFile;
+
+@Component
+public class Helper {
+//	/home/jigyasa_yadav/Documents/sts/Book_rest/src/main/resources/static
+	public final String UPLOAD_DIR="/home/jigyasa_yadav/Documents/sts/Book_rest/src/main/resources/static/image";
+	public boolean uploadfile(MultipartFile multipart) {
+		boolean f= false;
+		try {
+//			InputStream is= multipart.getInputStream();
+//			byte data[]= new byte[is.available()];
+//			is.read(data);
+//			FileOutputStream fos=new FileOutputStream(UPLOAD_DIR+"/"+multipart.getOriginalFilename());
+//			fos.write(data);
+//			fos.close();
+//			fos.flush();
+			Files.copy(multipart.getInputStream(),UPLOAD_DIR+ File.pathSeparator+multipart.getOriginalFilename(), null)
+			f=true;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return f;
+	}
+}

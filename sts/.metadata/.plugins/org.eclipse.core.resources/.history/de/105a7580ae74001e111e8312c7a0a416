@@ -1,0 +1,15 @@
+package com.book.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.book.entity.Book;
+
+public class BookService {
+	private List<Book> listbook = new ArrayList<>();
+	static {
+		new Book(1, "java*8", "Durgesh");
+		new Book(24, "DSA", "In28minutes");
+		new Book(1, "JSP", "love2code");
+	}
+}

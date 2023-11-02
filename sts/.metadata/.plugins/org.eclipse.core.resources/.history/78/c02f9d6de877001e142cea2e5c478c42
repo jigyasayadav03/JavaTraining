@@ -1,0 +1,12 @@
+package com.mapping.oneTOmany;
+
+
+import java.util.Set;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+@Repository
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+    Set<User> findByContact(String contact);
+
+}

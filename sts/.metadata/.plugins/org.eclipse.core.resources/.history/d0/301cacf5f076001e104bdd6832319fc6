@@ -1,0 +1,48 @@
+package com.book.mapping.questionanswer;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="question")
+public class Question {
+public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+@Override
+	public String toString() {
+		return "Question [id=" + id + ", quest=" + quest + ", anwswer=" + anwswer + "]";
+	}
+public Question(int id, String quest, Answer anwswer) {
+		super();
+		this.id = id;
+		this.quest = quest;
+		this.anwswer = anwswer;
+	}
+public Answer getAnwswer() {
+		return anwswer;
+	}
+	public void setAnwswer(Answer anwswer) {
+		this.anwswer = anwswer;
+	}
+@Id
+private int id;
+private String quest;
+private Answer anwswer;
+
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getQuest() {
+	return quest;
+}
+public void setQuest(String quest) {
+	this.quest = quest;
+}
+
+}

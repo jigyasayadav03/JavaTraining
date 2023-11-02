@@ -1,0 +1,30 @@
+package com.mapping.oneTOmany;
+
+package com.mapping.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "prod_table")
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private int p_id;
+    private String name;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "user_id") // This is the foreign key column in the product table
+    private User user;
+
+    // Constructors, getters, setters, and other methods (same as before)
+}
+}

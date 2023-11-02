@@ -1,0 +1,12 @@
+package com.example.demo.model;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Integer> {
+    // Use the built-in findAll method to retrieve all users
+    Iterable<User> findAll();
+
+    Iterable<User> findByName(String name);
+  Iterable<User> findByAddress(String address);
+    
+}

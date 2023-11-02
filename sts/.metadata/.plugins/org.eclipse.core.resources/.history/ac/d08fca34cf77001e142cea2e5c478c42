@@ -1,0 +1,21 @@
+package com.mapping.entity;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+    // Use the built-in findAll method to retrieve all users
+    List<User> findAll();
+    
+        List<User> findByName(String name);
+    
+
+    //Iterable<User> findByName(String name);
+  Iterable<User> findByAddress(String address);
+//  @Query("Select u from user where u.name = : n" )
+//  public List<User> findByName(@Param ("n") String name);
+   
+}

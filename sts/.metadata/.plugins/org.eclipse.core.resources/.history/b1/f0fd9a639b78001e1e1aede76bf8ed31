@@ -1,0 +1,31 @@
+package com.mapping.oneTOmany.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.mapping.oneTOmany.Student;
+import com.mapping.oneTOmany.StudentRepository;
+
+@Service
+public class StudentService {
+
+    private final StudentRepository studentRepository;
+
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    public List<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    public Student getStudentById(int studentId) {
+        return studentRepository.findById(studentId).orElse(null);
+    }
+
+    public void save(Student student) {
+        studentRepository.save(student);
+    }
+}

@@ -1,0 +1,5 @@
+package com.book.mapping.questionanswer;
+
+public class Answer {
+
+}

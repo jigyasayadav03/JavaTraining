@@ -1,0 +1,54 @@
+package com.mapping.oneTOmany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "add_tbl")
+public class Address {
+	@Id
+	private int id;
+	private String Street;
+	private String City;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getStreet() {
+		return Street;
+	}
+	public void setStreet(String street) {
+		Street = street;
+	}
+	public String getCity() {
+		return City;
+	}
+	public void setCity(String city) {
+		City = city;
+	}
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", Street=" + Street + ", City=" + City + "]";
+	}
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Address(int id, String street, String city) {
+		super();
+		this.id = id;
+		Street = street;
+		City = city;
+	}
+	
+}

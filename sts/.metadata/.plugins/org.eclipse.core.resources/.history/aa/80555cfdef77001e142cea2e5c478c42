@@ -1,0 +1,53 @@
+package com.mapping.oneTOmany;
+
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="add_tbl")
+public class Address {
+	@Id
+	private int id;
+	private String permanent;
+private String temporary;
+
+private Student student;
+
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getPermament() {
+	return getPermament();
+}
+public void setPermament(String permament) {
+	this.permanent = permament;
+}
+public String getTemporary() {
+	return temporary;
+}
+public void setTemporary(String temporary) {
+	this.temporary = temporary;
+}
+@Override
+public String toString() {
+	return "Address [id=" + id + ", permament=" + permanent + ", temporary=" + temporary + "]";
+}
+public Address(int id, String permament, String temporary) {
+	super();
+	this.id = id;
+	this.permanent = permament;
+	this.temporary = temporary;
+}
+public Address() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+}

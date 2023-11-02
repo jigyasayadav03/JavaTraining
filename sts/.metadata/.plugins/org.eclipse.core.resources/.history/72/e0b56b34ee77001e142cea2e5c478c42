@@ -1,0 +1,8 @@
+package com.mapping.oneTOmany;
+
+public class Address {
+	private int id;
+	
+private String permament;
+private String temporary;
+}

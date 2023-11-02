@@ -1,0 +1,46 @@
+package com.example.demo.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="product_table")
+public class Products {
+@Id
+private int p_id;
+private String name;
+@OneToOne
+@JsonBackReference
+private User user;
+
+public Products(int p_id, String name) {
+	super();
+	this.p_id = p_id;
+	this.name = name;
+}
+public int getP_id() {
+	return p_id;
+}
+public void setP_id(int p_id) {
+	this.p_id = p_id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public Products() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+@Override
+public String toString() {
+	return "Products [p_id=" + p_id + ", name=" + name + "]";
+}
+
+}

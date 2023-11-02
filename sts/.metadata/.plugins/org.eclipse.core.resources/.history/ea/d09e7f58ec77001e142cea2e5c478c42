@@ -1,0 +1,72 @@
+package com.mapping.oneTOmany;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
+
+    // Create a new user
+    @PostMapping("/user")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.ok(savedUser);
+    }
+
+    // Get a user by ID
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Get all users
+    @GetMapping("/user")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    // Delete a user by ID
+    @DeleteMapping("/user/{userId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("userId") int userId) {
+        userRepository.deleteById(userId);
+        return ResponseEntity.ok().build();
+    }
+
+    // Create a new contact
+    @PostMapping("/createContact")
+    public ResponseEntity<Contact> createContact(@RequestBody Contact contact) {
+        Contact savedContact = contactRepository.save(contact);
+        return ResponseEntity.ok(savedContact);
+    }
+
+    // Get a contact by ID
+    @GetMapping("/contact/{contactId}")
+    public ResponseEntity<Contact> getContactById(@PathVariable("contactId") int contactId) {
+        Optional<Contact> contact = contactRepository.findById(contactId);
+        return contact.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // Get all contacts
+    @GetMapping("/contacts")
+    public List<Contact> getAllContacts() {
+        return contactRepository.findAll();
+    }
+
+    // Delete a contact by ID
+    @DeleteMapping("/contact/{contactId}")
+    public ResponseEntity<Void> deleteContact(@PathVariable("contactId") int contactId) {
+        contactRepository.deleteById(contactId);
+        return ResponseEntity.ok().build();
+    }
+}

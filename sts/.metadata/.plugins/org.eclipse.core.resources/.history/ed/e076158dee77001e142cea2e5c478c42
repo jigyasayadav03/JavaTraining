@@ -1,0 +1,41 @@
+package com.mapping.oneTOmany;
+
+public class Address {
+	private int id;
+	
+private String permament;
+private String temporary;
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public String getPermament() {
+	return permament;
+}
+public void setPermament(String permament) {
+	this.permament = permament;
+}
+public String getTemporary() {
+	return temporary;
+}
+public void setTemporary(String temporary) {
+	this.temporary = temporary;
+}
+@Override
+public String toString() {
+	return "Address [id=" + id + ", permament=" + permament + ", temporary=" + temporary + "]";
+}
+public Address(int id, String permament, String temporary) {
+	super();
+	this.id = id;
+	this.permament = permament;
+	this.temporary = temporary;
+}
+public Address() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+}

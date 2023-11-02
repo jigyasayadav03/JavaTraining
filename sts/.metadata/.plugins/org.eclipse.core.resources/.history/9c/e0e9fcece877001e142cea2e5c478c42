@@ -1,0 +1,15 @@
+@Entity
+@Table(name = "user")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String address;
+
+    @ManyToOne
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
+
+    // Constructors, getters, setters, etc.
+}

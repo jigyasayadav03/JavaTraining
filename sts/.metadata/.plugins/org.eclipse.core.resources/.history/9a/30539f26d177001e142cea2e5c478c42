@@ -1,0 +1,33 @@
+package com.mapping.entity;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+//entitiyy class
+@Entity
+@Table(name="user_tble")
+public class User
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int  id ;
+private String name;
+private String address;
+private String contact;
+@OneToOne
+//one to one biirectional mapping
+@JsonManagedReference
+//parent bean
+private Product product;
+public User() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+}

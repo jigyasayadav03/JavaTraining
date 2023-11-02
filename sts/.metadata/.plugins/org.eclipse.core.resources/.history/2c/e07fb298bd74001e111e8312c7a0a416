@@ -1,0 +1,53 @@
+package com.book.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Component;
+
+import com.book.entity.Book;
+
+@Component
+public class BookService {
+	private static List<Book> listbook = new ArrayList<>();
+	static {
+		listbook.add(new Book(1, "java*8", "Durgesh"));
+		listbook.add(new Book(24, "DSA", "In28minutes"));
+		listbook.add(new Book(12, "JSP", "love2code"));
+	}
+
+	public List<Book> getAllBook() {
+		return listbook;
+	}
+
+	public Book getBookById(int id) {
+		Book book = listbook.stream().filter(e -> e.getId() == id).findFirst().get();
+		return book;
+	}
+
+	public Book addBook(Book b) {
+		listbook.add(b);
+		return b;
+
+	}
+
+	public void deleteBook(int id) {
+		Book book = listbook.remove(id);
+		System.out.println("deletion successful");
+	}
+
+	public void updateBook(int id, String newAuthor) {
+	    List<Book> updatedBooks = listbook.stream()
+	        .map(b -> {
+	            if (b.getId() == id) {
+	               
+					b.setAuthor(newAuthor);
+	            }
+	            return b;
+	        })
+	        .collect(Collectors.toList());
+
+	}
+	}
+	    
