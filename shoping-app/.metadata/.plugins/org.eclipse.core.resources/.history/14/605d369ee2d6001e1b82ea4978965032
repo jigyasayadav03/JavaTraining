@@ -1,0 +1,5 @@
+package com.onlineShop.Security.swagger;
+
+public class SwaggerConfig {
+
+}

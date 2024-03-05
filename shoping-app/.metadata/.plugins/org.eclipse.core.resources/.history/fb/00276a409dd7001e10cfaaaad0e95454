@@ -1,0 +1,20 @@
+package com.onlineShop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.Address;
+import com.onlineShop.repository.AddressRepository;
+
+@Service
+public class AddressSrevice {
+
+	@Autowired
+	private AddressRepository repAddress;
+
+	public Address address(Address address) {
+		return repAddress.save(address);
+
+	}
+
+}

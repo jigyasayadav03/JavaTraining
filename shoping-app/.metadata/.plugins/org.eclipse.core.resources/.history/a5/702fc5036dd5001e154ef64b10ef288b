@@ -1,0 +1,6 @@
+package com.onlineShop.service;
+
+
+	public interface RoleService {
+	    Role findByName(String name);
+}

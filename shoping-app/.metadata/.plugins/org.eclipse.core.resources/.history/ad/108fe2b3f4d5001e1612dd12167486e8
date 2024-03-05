@@ -1,0 +1,14 @@
+package com.onlineShop.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.onlineShop.model.User;
+import com.onlineShop.security.AuthenticationRequest;
+
+public interface UserRepository extends JpaRepository<User,Long>{
+
+	User findByUsername(String username);
+
+	User save(AuthenticationRequest registrationRequest);
+
+}

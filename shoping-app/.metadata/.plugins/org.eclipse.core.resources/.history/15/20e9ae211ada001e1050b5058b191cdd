@@ -1,0 +1,50 @@
+package com.onlineShop.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.Cart;
+import com.onlineShop.model.CartItem;
+import com.onlineShop.repository.CartRepository;
+import com.onlineShop.service.CartService;
+
+@Service
+public class CartServiceImpl implements CartService {
+
+	@Autowired
+	private CartRepository cartRepository;
+
+//    @Override
+//    public Cart createCart(Cart cart) {
+//        return cartRepository.save(cart);
+//    }
+	@Override
+	public Cart createCart(Cart cart) {
+		// Iterate over the cartItems list and set the Cart object reference for each
+		// CartItem
+		for (CartItem cartItem : cart.getCartItems()) {
+			cartItem.setCart(cart);
+		}
+		// Save the Cart object
+		return cartRepository.save(cart);
+	}
+
+	@Override
+	public Cart getCartById(Long id) {
+		Optional<Cart> optionalCart = cartRepository.findById(id);
+		return optionalCart.orElse(null);
+	}
+
+	@Override
+	public List<Cart> getAllCarts() {
+		return cartRepository.findAll();
+	}
+
+	@Override
+	public void deleteCart(Long id) {
+		cartRepository.deleteById(id);
+	}
+}

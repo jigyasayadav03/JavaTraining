@@ -1,0 +1,55 @@
+package com.onlineShop.secuirty.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.secuirty.entity.UserCredential;
+import com.onlineShop.secuirty.repository.UserRepository;
+
+@Service
+public class AuthService {
+
+	@Autowired
+	private UserRepository repository;
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private JwtService jwtService;
+
+	public String saveUser(UserCredential credential) {
+		credential.setPassword(passwordEncoder.encode(credential.getPassword()));
+		repository.save(credential);
+		return "User added to the system";
+	}
+
+	public String generateToken(String username, String password) {
+
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+
+		Object principal = authentication.getPrincipal();
+		if (principal instanceof UserDetails) {
+			UserDetails userDetails = (UserDetails) principal;
+			return jwtService.generateToken(userDetails.getUsername(), userDetails.getAuthorities());
+		} else {
+			throw new IllegalStateException("Unexpected principal type: " + principal.getClass());
+		}
+	}
+
+	public UserCredential getUserByName(String username) {
+		return repository.findByName(username).orElseThrow(() -> new RuntimeException("User not found"));
+	}
+
+	public void validateToken(String token) {
+		jwtService.validateToken(token);
+	}
+
+}

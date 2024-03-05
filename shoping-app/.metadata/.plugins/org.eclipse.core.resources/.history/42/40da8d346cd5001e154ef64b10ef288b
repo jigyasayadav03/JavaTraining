@@ -1,0 +1,5 @@
+package com.onlineShop.security;
+
+public class SecurityConfig {
+
+}

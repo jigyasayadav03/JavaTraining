@@ -1,0 +1,19 @@
+@Autowired
+    private CartService cartService;
+
+    @PostMapping
+    public ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
+        Cart createdCart = cartService.createCart(cart);
+        return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cart> getCart(@PathVariable Long id) {
+        Cart cart = cartService.getCart(id);
+        if (cart != null) {
+            return new ResponseEntity<>(cart, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    }

@@ -1,0 +1,10 @@
+package com.onlineShop.service;
+
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.User;
+import com.onlineShop.security.AuthenticationRequest;
+@Service
+public interface UserService {
+public User registerUser(AuthenticationRequest registrationRequest);
+}

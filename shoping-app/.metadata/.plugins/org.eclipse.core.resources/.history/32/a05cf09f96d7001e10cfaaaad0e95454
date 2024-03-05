@@ -1,0 +1,39 @@
+package com.onlineShop.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.onlineShop.service.impl.AddressService;
+
+
+public class AddressController {
+
+	@Autowired
+	private AddressService addressService;
+
+	@PostMapping("/add")
+	public Address addAddress(@RequestBody Address address) {
+		return addressService.addressAdd(address);
+
+	}
+
+	
+	@Column(nullable = false)
+	@JsonProperty
+	private String street;
+	
+	@Column(nullable = false)
+	@JsonProperty
+	private String city;
+	
+	@Column(nullable = false)
+	@JsonProperty
+	private String state;
+	
+	@Column(nullable = false, name = "postal_code")
+	@JsonProperty("postal_code")
+	private String postalCode;
+	
+}

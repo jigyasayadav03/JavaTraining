@@ -1,0 +1,11 @@
+package com.onlineShop.model;
+
+@Data
+public class UserDto {
+
+	private String username;
+
+	private String password;
+
+	private String roleName; // Role name instead of role ID
+}

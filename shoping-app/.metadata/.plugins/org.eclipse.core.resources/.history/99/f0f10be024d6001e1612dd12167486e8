@@ -1,0 +1,62 @@
+package com.onlineShop.secuirty.service;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.secuirty.entity.UserCredential;
+import com.onlineShop.secuirty.repository.UserRepository;
+
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Log4j2
+public class AuthService {
+
+	@Autowired
+	private UserRepository repository;
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private JwtService jwtService;
+
+	public String saveUser(UserCredential credential) {
+		credential.setPassword(passwordEncoder.encode(credential.getPassword()));
+		repository.save(credential);
+		return "User added to the system";
+	}
+
+	public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(extraClaims, userDetails));
+//Map<String, Object> extraClaims, UserDetails userDetails
+		Object principal = authentication.getPrincipal();
+		if (principal instanceof UserDetails) {
+//			UserDetails userDetails = (UserDetails) principal;
+			log.info("++++++++++++++++++++++++++++++++++=user details "+userDetails.getUsername());
+			log.info("user details "+userDetails.getAuthorities());
+			return jwtService.generateToken(extractClaims, userDetails);
+		} else {
+			throw new IllegalStateException("Unexpected principal type: " + principal.getClass());
+		}
+	}
+
+	public UserCredential getUserByName(String username) {
+		return repository.findByName(username).orElseThrow(() -> new RuntimeException("User not found"));
+	}
+
+	public void validateToken(String token) {
+		jwtService.validateToken(token);
+	}
+
+}

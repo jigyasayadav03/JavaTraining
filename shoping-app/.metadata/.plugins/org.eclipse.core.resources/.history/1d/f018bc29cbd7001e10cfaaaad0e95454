@@ -1,0 +1,46 @@
+package com.onlineShop.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.OrderItem;
+import com.onlineShop.model.UserOrder;
+import com.onlineShop.repository.OrderItemRepository;
+import com.onlineShop.repository.OrderRepository;
+import com.onlineShop.service.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderRepository orderRepository;
+	@Autowired
+    private OrderItemRepository orderItemRepository;
+	@Override
+	public void deleteOrder(Long id) {
+		orderRepository.deleteById(id);
+	}
+
+	@Override
+	 public UserOrder createOrder(UserOrder userOrder, List<OrderItem> orderItems) {
+        // Save the UserOrder
+        UserOrder savedUserOrder = orderRepository.save(userOrder);
+
+        // Associate each OrderItem with the UserOrder and save them
+        for (OrderItem orderItem : orderItems) {
+            orderItem.setUserOrder(savedUserOrder);
+            orderItemRepository.save(orderItem);
+        }
+
+        return savedUserOrder;
+    }
+
+	}
+
+	@Override
+	public List<UserOrder> getOrder() {
+		return orderRepository.findAll();
+	}
+}

@@ -1,0 +1,5 @@
+package com.onlineShop.repository;
+
+public class AddressRepository {
+
+}

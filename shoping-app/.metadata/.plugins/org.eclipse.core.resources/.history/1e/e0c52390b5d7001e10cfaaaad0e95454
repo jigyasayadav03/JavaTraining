@@ -1,0 +1,83 @@
+package com.onlineShop.model;
+
+import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Data
+@Table(name = "item")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+public class Item {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
+    private Long id;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String name;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private BigDecimal price;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String description;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private int quantityAvailable;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String category;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String brand;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String color;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String screenSize;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String processor;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String ram;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String storage;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String camera;
+    
+    @Column(nullable = false)
+    @JsonProperty
+    private String batteryCapacity;
+
+    // Getters and Setters, hashCode(), equals() methods
+}

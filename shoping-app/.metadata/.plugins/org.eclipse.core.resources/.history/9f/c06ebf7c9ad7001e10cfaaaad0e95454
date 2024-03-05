@@ -1,0 +1,36 @@
+package com.onlineShop.model;
+
+import org.hibernate.annotations.ManyToAny;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.onlineShop.controller.entity.UserInfo;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Address {
+	
+	@Id
+	private int id;
+
+	@Column(nullable = false)
+	private String street;
+
+	@Column(nullable = false)
+	private String city;
+
+	@Column(nullable = false)
+	private String state;
+
+	@Column(nullable = false, name = "postal_code")
+	private String postalCode;
+
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "user_id")
+	private UserInfo user;
+}

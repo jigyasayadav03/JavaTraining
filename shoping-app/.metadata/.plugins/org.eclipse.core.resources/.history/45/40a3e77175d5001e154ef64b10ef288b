@@ -1,0 +1,26 @@
+package com.onlineShop.service.impl;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.User;
+import com.onlineShop.repository.UserRepository;
+import com.onlineShop.security.AuthenticationRequest;
+import com.onlineShop.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository userRepo;
+
+	@Override
+	public User registerUser(AuthenticationRequest registrationRequest) {
+		User u = userRepo.save(registrationRequest);
+
+		return u;
+	}
+
+}

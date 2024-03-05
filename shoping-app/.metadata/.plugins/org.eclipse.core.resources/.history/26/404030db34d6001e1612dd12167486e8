@@ -1,0 +1,5 @@
+package com.onlineShop.security.config;
+
+public class JwtAuthFilter {
+
+}

@@ -1,0 +1,29 @@
+package com.onlineShop.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "order_item")
+public class OrderItem {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty
+	@Column
+	private Long id;
+
+	@ManyToOne
+	@JoinColumn(name = "user_order_id", nullable = false)
+	private UserOrder userOrder;
+
+	@ManyToOne
+	@JoinColumn(name = "item_id", nullable = false)
+	private Item item;
+
+	@Column(nullable = false)
+	@JsonProperty
+	private int quantity;
+
+	// Constructors, getters, setters...
+}

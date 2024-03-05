@@ -1,0 +1,56 @@
+package com.onlineShop.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.Cart;
+import com.onlineShop.model.CartItem;
+import com.onlineShop.model.Item;
+import com.onlineShop.repository.CartRepository;
+import com.onlineShop.service.CartService;
+
+@Service
+public class CartServiceImpl implements CartService {
+
+    @Autowired
+    private CartRepository cartRepository;
+
+    public void addItemToCart(Item item, int quantity) {
+        // Check if the item is already in the cart
+        for (CartItem cartItem : cartItems) {
+            if (cartItem.getItem().equals(item)) {
+                // If the item is already in the cart, increase its quantity
+                int newQuantity = cartItem.getQuantity() + quantity;
+                cartItem.setQuantity(newQuantity);
+                // Update total price
+                updateTotal();
+                return; // Exit the method
+            }
+        }
+
+        // If the item is not already in the cart, create a new CartItem and add it to the cart
+        CartItem cartItem = new CartItem(item, quantity);
+        cartItems.add(cartItem);
+        item.setQuantityAvailable(item.getQuantityAvailable() - quantity); // Adjust quantity available
+        updateTotal(); // Update the total price
+    }
+
+    @Override
+    public Cart getCartById(Long id) {
+        Optional<Cart> optionalCart = cartRepository.findById(id);
+        return optionalCart.orElse(null);
+    }
+
+    @Override
+    public List<Cart> getAllCarts() {
+        return cartRepository.findAll();
+    }
+
+    @Override
+    public void deleteCart(Long id) {
+        cartRepository.deleteById(id);
+    }
+}

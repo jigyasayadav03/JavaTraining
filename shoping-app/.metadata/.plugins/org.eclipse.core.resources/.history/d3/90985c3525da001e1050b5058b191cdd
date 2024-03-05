@@ -1,0 +1,38 @@
+package com.onlineShop.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.Order;
+import com.onlineShop.repository.OrderRepository;
+import com.onlineShop.service.OrderService;
+
+@Service
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderRepository orderRepository;
+
+	@Override
+	public void deleteOrder(Long id) {
+		orderRepository.deleteById(id);
+	}
+
+	@Override
+	public Order createOrder(Order userorder) {
+		return orderRepository.save(userorder);
+	}
+
+	@Override
+	public List<Order> getOrder() {
+		return orderRepository.findAll();
+	}
+
+	@Override
+	public List<Order> getOrderByid(Long id) {
+		List<Order> order = orderRepository.findAllById(id);
+		return null;
+	}
+}

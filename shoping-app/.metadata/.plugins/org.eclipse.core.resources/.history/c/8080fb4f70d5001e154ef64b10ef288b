@@ -1,0 +1,8 @@
+package com.onlineShop.security;
+
+import lombok.Data;
+
+@Data
+public class AuthenticationResponse {
+    private String token;
+}

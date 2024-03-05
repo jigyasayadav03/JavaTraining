@@ -1,0 +1,52 @@
+package com.onlineShop.secuirty.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.secuirty.entity.UserCredential;
+import com.onlineShop.secuirty.repository.UserRepository;
+
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Log4j2
+public class AuthService {
+
+	@Autowired
+	private UserRepository repository;
+
+	@Autowired
+	private JwtService jwtService;
+
+	public String saveUser(UserCredential credential) {
+		repository.save(credential);
+		return "User added to the system";
+	}
+
+	public String generateToken(UserDetails userDetails) {
+		// Implement your logic to generate token
+		return jwtService.generateToken(userDetails);
+	}
+
+	public UserDetails getUserByName(String username) {
+		// Implement your logic to get user details by username
+		return repository.findByName(username).orElseThrow(() -> new RuntimeException("User not found"));
+	}
+
+	public UserDetails extractUserDetails(String token) {
+		// Implement your logic to extract UserDetails from token
+		String username = jwtService.extractUserName(token);
+		return getUserByName(username);
+	}
+
+	public String validateToken(String token, UserDetails userDetails) {
+		// Implement your logic to validate token
+		boolean isValid = jwtService.isTokenValid(token, userDetails);
+		if (isValid) {
+			return "Token is valid";
+		} else {
+			throw new RuntimeException("Invalid token");
+		}
+	}
+}

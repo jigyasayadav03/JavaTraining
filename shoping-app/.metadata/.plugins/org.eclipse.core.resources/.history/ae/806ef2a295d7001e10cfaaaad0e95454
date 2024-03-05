@@ -1,0 +1,20 @@
+package com.onlineShop.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.onlineShop.model.Address;
+import com.onlineShop.service.impl.AddressService;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+public class AddressController {
+	@Autowired
+	private AddressService addressService;
+
+	@PostMapping("/add")
+	public Address addAddress(@RequestBody Address address) {
+		return;
+
+	}
+}

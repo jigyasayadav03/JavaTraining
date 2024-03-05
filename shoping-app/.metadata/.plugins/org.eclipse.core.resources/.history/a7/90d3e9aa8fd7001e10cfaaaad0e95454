@@ -1,0 +1,5 @@
+package com.onlineShop.controller.model;
+
+public class Address {
+
+}

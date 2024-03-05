@@ -1,0 +1,48 @@
+package com.onlineShop.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.onlineShop.model.Product;
+import com.onlineShop.repository.ProductRepository;
+import com.onlineShop.service.ProductService;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+
+	@Autowired
+	private ProductRepository productRepository;
+
+//	@Override
+//	public void deleteProduct(Long id) {
+//		itemRepository.deleteById(id);
+//	}
+
+	@Override
+	public Product addItem(Product item) {
+		return productRepository.save(item);
+	}
+
+	@Override
+	public Item updateItem(Long id, Item newItem) {
+		Optional<Item> optionalItem = itemRepository.findById(id);
+		if (optionalItem.isPresent()) {
+			Item existingItem = optionalItem.get();
+			existingItem.setName(newItem.getName());
+			existingItem.setPrice(newItem.getPrice());
+			existingItem.setDescription(newItem.getDescription());
+			return itemRepository.save(existingItem);
+		} else {
+			throw new RuntimeException("Item not found with id: " + id);
+		}
+	}
+
+	@Override
+	public List<Item> viewItem() {
+		return itemRepository.findAll();
+	}
+}
