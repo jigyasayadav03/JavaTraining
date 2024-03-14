@@ -1,0 +1,53 @@
+package com.cartservice.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cartservice.entities.Cart;
+import com.cartservice.repository.CartRepository;
+import com.cartservice.service.CartService;
+
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Log4j2
+public class CartserviceImpl implements CartService {
+
+	@Autowired
+	CartRepository cartRepository;
+
+	@Override
+	public List<Cart> getAllCarts() {
+		List<Cart> c = cartRepository.findAll();
+		log.info("+++++++++++++the cart are ::::::::::::+++++++++", c);
+		return c;
+	}
+
+	@Override
+	public Cart createCart(Cart cart) {
+		Cart c = cartRepository.save(cart);
+		log.info("+++++++++++++++++the cart is ::::++++++++++++", cart);
+		return c;
+	}
+
+	@Override
+	public Cart updateCart(Long id, Cart cart) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCart(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<Cart> getCartById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

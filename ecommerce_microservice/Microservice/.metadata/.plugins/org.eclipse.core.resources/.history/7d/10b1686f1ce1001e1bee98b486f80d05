@@ -1,0 +1,19 @@
+package com.product.config;
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class Config {
+
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserInfoService();
+	}
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		return httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests()
+				.requestMatchers( "/products/all").permitAll()
+				.anyRequest().authenticated();
+				
+	}

@@ -1,0 +1,25 @@
+package com.product.config;
+
+@Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
+public class Config {
+
+	@Autowired
+	private JwtFilter jwtFilter;
+
+	@Bean
+	public UserDetailsService userDetailsService() {
+		return new UserInfoService();
+	}
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+		return httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests()
+				.requestMatchers("/auth/welcome", "/auth/addUser", "/auth/login", "/products/all").permitAll()
+				.anyRequest().authenticated()
+				// .sessionManagement(session ->
+				// session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				// .authenticationProvider(authenticationProvider())
+				.and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class).build();
+	}

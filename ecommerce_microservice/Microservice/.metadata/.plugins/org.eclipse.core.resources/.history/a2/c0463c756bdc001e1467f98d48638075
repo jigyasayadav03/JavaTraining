@@ -1,0 +1,5 @@
+package com.authservice.security.config;
+
+public class RestTemplate {
+
+}

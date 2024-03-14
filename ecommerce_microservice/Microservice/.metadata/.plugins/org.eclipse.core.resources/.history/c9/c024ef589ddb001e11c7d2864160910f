@@ -1,0 +1,9 @@
+package com.cartservice.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cartservice.entities.Cart;
+
+public interface CartRepository extends JpaRepository<Cart, Long> {
+
+}

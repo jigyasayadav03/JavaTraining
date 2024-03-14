@@ -1,0 +1,106 @@
+package com.order.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import com.order.entities.Order;
+import com.order.exception.ResourceNotFoundException;
+import com.order.repositories.OrderRepository;
+import com.order.service.OrderService;
+
+import lombok.extern.log4j.Log4j2;
+
+@Service
+@Log4j2
+public class OrderServiceImpl implements OrderService {
+
+	@Autowired
+	private OrderRepository orderRepository;
+
+	@Override
+	public Order addOrder(Order order) {
+		return orderRepository.save(order);
+	}
+
+	@Override
+	public List<Order> getAllOrder() {
+		return orderRepository.findAll();
+	}
+
+	@Override
+	public Order getOrderById(Long orderId) {
+		Optional<Order> optionalOrder = orderRepository.findById(orderId);
+		return optionalOrder.orElse(null);
+	}
+
+	@Override
+	public Order updateOrder(Order order) {
+		Optional<Order> optionalExistingOrder = orderRepository.findById(order.getOrderid());
+		if (optionalExistingOrder.isPresent()) {
+			Order existingOrder = optionalExistingOrder.get();
+			existingOrder.setUserId(order.getUserId());
+			existingOrder.setTotalPrice(order.getTotalPrice());
+			existingOrder.setOrderDate(order.getOrderDate());
+			existingOrder.setShippingAddress(order.getShippingAddress());
+			existingOrder.setOrderStatus(order.getOrderStatus());
+			return orderRepository.save(existingOrder);
+		} else {
+
+			return null;
+		}
+	}
+
+	@Override
+	public Order deleteOrder(Long orderId) {
+
+		Optional<Order> optionalExistingOrder = orderRepository.findById(orderId);
+		if (optionalExistingOrder.isPresent()) {
+
+			Order existingOrder = optionalExistingOrder.get();
+			orderRepository.deleteById(orderId);
+			return existingOrder;
+		} else {
+
+			return null;
+		}
+	}
+
+	@Override
+	public List<Order> getByUserId(Long userId) {
+		List<Order> o = orderRepository.findByUserId(userId);
+		log.info("+++++++++++++++++++AW###$#$^&");
+		return o;
+	}
+
+//	@Override
+//	public List<Order> searchOrderByName(String name, int page, int size) {
+//		Pageable pageable = PageRequest.of(page, size);
+//		Page<Order> orderPage = orderRepository.findByOrderName(name, pageable);
+//		if (orderPage.isEmpty()) {
+//			throw new ResourceNotFoundException("no Order found with this name " + name);
+//		} else {
+//			return orderPage.getContent();
+//
+//		}
+	// }
+//	 public Page<Order> findOrdersByOrderName(String order_name, Pageable pageable) {
+//	        return orderRepository.findByOrder_name(order_name, pageable);
+//	    }
+
+	@Override
+	public Page<Order> searchOrdersByName(String orderName, String name, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Order> orderPage = orderRepository.findByOrderNameContainingIgnoreCase(name, pageable);
+		if (orderPage.isEmpty()) {
+			throw new ResourceNotFoundException("no product found with this name " + name);
+		} else {
+			return orderPage.getContent();
+		}
+	}
+}

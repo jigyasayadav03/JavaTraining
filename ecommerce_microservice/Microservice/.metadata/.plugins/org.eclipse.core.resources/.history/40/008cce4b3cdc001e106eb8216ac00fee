@@ -1,0 +1,19 @@
+package com.order.repositories;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.order.entities.Order;
+
+@Repository
+public interface OrderRepository extends JpaRepository<Order, Long> {
+	List<Order> findByUserId(Long userId);
+
+	@Query("SELECT o FROM Purchase_order o WHERE o.order_name= : name")
+	Page<Order> findByOrderName(String orderName, Pageable pageable);
+}
